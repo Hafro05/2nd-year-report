@@ -1,0 +1,54 @@
+% Commandes pour les étudiants et tuteurs
+\newcommand{\addstudent}[3]{\small{#1} & \small{#2} & \small{\href{mailto:#3}{#3}}\\}
+\newcommand{\addtutor}[3]{\small{#1} & \small{#2} & \small{\href{mailto:#3}{#3}}\\}
+
+% Informations sur le projet
+\newcommand{\firstauthor}{Prénom Nom}
+\newcommand{\firstauthorinitials}{P. NOM}
+\newcommand{\projecticonl}{path/to/iconl.png}
+\newcommand{\projecticonr}{path/to/iconr.png}
+
+% Définir la commande \authorname
+\newcommand{\numauthors}{3}
+\newcommand{\authorname}{\firstauthor\ifthenelse{\numauthors > 1}{ et al.}{}}
+
+% Tabulation personnalisée
+\newcommand\tab[1][0.6cm]{\hspace*{#1}}
+
+% Chapitres et sections sans numérotation
+\newcommand{\chapternn}[1]{\chapter*{#1}\addcontentsline{toc}{chapter}{#1}}
+\newcommand{\sectionnn}[1]{\section*{#1}\addcontentsline{toc}{section}{#1}}
+\newcommand{\subsectionnn}[1]{\subsection*{#1}\addcontentsline{toc}{subsection}{#1}}
+\newcommand{\subsubsectionnn}[1]{\subsubsection*{#1}\addcontentsline{toc}{subsubsection}{#1}}
+
+% Types de colonnes personnalisés
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash\hspace{0pt}}p{#1}}
+
+% Numérotation des sections
+\renewcommand\thesection{\arabic{section}}
+\renewcommand\thesubsection{\thesection.\arabic{subsection}}
+
+% Configuration des hyperliens
+\hypersetup{
+    colorlinks      = false,
+    linkbordercolor = {1 1 1},
+    breaklinks      = true,
+    urlcolor        = blue,
+    linkcolor       = black,
+    citecolor       = black,
+    pdftitle        = {Security assessment of connected objects in the Internet of Things : State of the art},
+    pdfauthor       = {},
+    pdfsubject      = {}
+}
+
+% Configuration de l'en-tête et du pied de page
+\RequirePackage{fancyhdr}
+\pagestyle{fancy}
+
+% Commandes personnalisées pour les couleurs
+\newcommand{\validcolor}[1]{\textcolor{green!60!black}{#1}}
+\newcommand{\flatcolor}[1]{\textcolor{blue!60!black}{#1}}
+\newcommand{\unknowncolor}[1]{\textcolor{orange!80!black}{#1}}
+\newcommand{\invalidcolor}[1]{\textcolor{red!60!black}{#1}}

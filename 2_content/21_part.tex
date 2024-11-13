@@ -1,0 +1,120 @@
+\section{Contexte du stage}
+Mon stage s'est déroulé à Padoa au sein de l'équipe intégration.
+
+\subsection{Structure d'accueil}
+
+Padoa est une entreprise française spécialisée dans la santé au travail. Fondée
+en 2016 au sein de Kamet Ventures, elle développe des solutions technologiques
+innovantes pour les Services de Prévention et de Santé au Travail (SPST)
+\cite{padoa-website}.
+
+Padoa est basée à Paris et son objectif principal est de transformer la santé
+au travail en utilisant des technologies avancées pour améliorer le bien-être
+des employés et l'efficacité des services de santé au travail.
+
+Avec environ de 250 employés, Padoa est divisée en différentes équipes qui
+garantissent sa fiabilité et son expertise. Les plus importantes pour notre
+travail sont les suivantes :
+\begin{itemize}
+
+  \item \textbf{Déploiement}:
+        C'est une équipe constituée de chef de projets qui s'occupent de la phase de déploiement des nouveaux clients. C'est une période d'environ 6 mois durant laquelle Padoa effectue les différentes tâches nécessaires au passage d'un nouveau client sur son application (validation des règles de reprise de données, formation du personnel à l'utilisation de padoa, paramétrages)
+
+  \item \textbf{Intégration}:
+        Elle s'occupe principalement de la reprise des données des nouveaux clients pour leur passage sur Padoa. Elle travaille de manière conjointe avec l'équipe Déploiement.
+
+  \item \textbf{SRE(Site Reliability Engineering)}:
+        Ils s'occupent du support technique à Padoa en interne comme en externe. Ils s'occupent des serveurs utilisés autant par les clients que par les autres équipes de Padoa.
+
+\end{itemize}
+
+\subsection{L'équipe intégration}
+
+L’équipe intégration de Padoa joue un rôle central dans l’accompagnement des
+nouveaux clients au cours de leur transition vers les solutions de santé au
+travail proposées par l’entreprise. Elle est en charge de la reprise des
+données, un processus essentiel qui garantit une intégration fluide et
+sécurisée des informations des clients dans les systèmes de Padoa, assurant
+ainsi une transition sans interruption.
+
+Les responsabilités de l’équipe sont multiples et essentielles au bon
+fonctionnement des services. Elle s’occupe notamment de l’intégration des
+données historiques des clients dans les bases de données de Padoa, un
+processus complexe qui implique l’importation, la validation et la
+transformation des données afin de les rendre compatibles avec les systèmes
+internes. Dans ce cadre, l’équipe établit également des mappings et des règles
+de reprise : elle identifie et relie les valeurs des anciens logiciels utilisés
+par les clients à celles de Padoa, tout en élaborant des règles de reprise qui
+nécessitent ensuite la validation de l’équipe Déploiement en accord avec les
+clients.
+
+En plus de ces responsabilités, l’équipe intégration œuvre à l’automatisation
+des processus pour rendre l’intégration de données plus efficace. Elle
+développe et maintient des pipelines automatisés afin de simplifier les tâches
+répétitives. Enfin, l’équipe assure la gestion des flux de travail
+réguliers, quotidiens et hebdomadaires, pour certaines catégories de clients,
+ce qui inclut notamment la mise à jour des informations des salariés ou la
+validation de leur identité à l’aide de l’identifiant unique INS (correspondant
+au numéro de sécurité sociale), permettant de les identifier de manière fiable.
+
+Grâce à cette gestion complète de la reprise des données, l’équipe Intégration
+joue un rôle fondamental dans l’efficacité et la continuité des services de
+Padoa.
+
+\subsection{Le client: le SSTI03}
+
+Le SSTI03 (Service de Santé au Travail Interentreprises de l’Ain) est une organisation dédiée à la santé et la sécurité des travailleurs dans le département de l’Ain. Comme d'autres services de santé au travail, le SSTI03 accompagne les entreprises de la région dans la mise en œuvre des obligations de suivi médical, de prévention des risques professionnels et de promotion de la santé au travail. Il propose des services variés, allant des examens médicaux réglementaires aux actions de prévention en entreprise, en passant par des conseils et formations pour favoriser de meilleures conditions de travail.
+
+Le SSTI03 travaille en partenariat avec des spécialistes de la santé au travail, comme des médecins du travail, des infirmiers et des intervenants en prévention des risques professionnels (IPRP).
+
+Pour organiser leur quotidien et gérer leur différentes tâches; ils utilisent un logiciel. Celui ci leur ser à planifier les visites, gérer les planning des professionnels de santé, enregistrer les informations des adhérents et des salariésqu'il suivent ou encore les examens à leur faire passer. Dans le cas du SSTI03, il est en train de transitionner du logiciel Préventiel au logiciel Padoa. 
+
+\begin{figure}[h!]
+  \centering
+  \begin{forest}
+    for tree={
+    grow'=0,
+    draw,
+    rounded corners,
+    node options={align=center, draw, rounded corners},
+    fit=band,
+    anchor=west,
+    parent anchor=east,
+    child anchor=west,
+    edge path={
+        \noexpand\path [draw, \forestoption{edge}]
+        (!u.parent anchor) -- +(5pt,0) |- (.child anchor)\forestoption{edge label};
+      },
+    s sep+=5pt,
+    l sep+=10pt,
+    }
+    [Projet
+      [0\_config
+        [01\_commands.tex]
+        [02\_packages.tex]
+        [03\_variables.tex]
+      ]
+      [1\_cover
+        [11\_covermain.tex]
+        [12\_cover\_in.tex]
+        [13\_cover\_out.tex]
+      ]
+      [2\_content
+        [20\_abstract.tex]
+        [20\_introduction.tex]
+        [21\_part.tex]
+        [28\_conclusion.tex]
+        [29\_bibliography.tex]
+      ]
+      [3\_bibliography
+        [bibliography.bib]
+      ]
+      [4\_attachments
+        [figures]
+        [tables]
+      ]
+    ]
+  \end{forest}
+  \caption{Structure du Projet LaTeX}
+  \label{fig:structure_projet}
+\end{figure}

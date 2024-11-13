@@ -1,0 +1,73 @@
+% Page de couverture
+\pagenumbering{gobble} % Supprime la numérotation des pages
+\thispagestyle{empty}
+
+\maketitle
+\vspace{0.5cm}
+\hrule
+\vspace{1cm}
+
+% Images et informations sur la couverture
+\noindent\begin{tikzpicture}[remember picture, overlay, shift={(current page.south west)}]
+    \node[anchor=north west] at (2,27.7) {\includegraphics[height=1.225cm, keepaspectratio]{1_cover/meta/insa.pdf}};
+    \node[anchor=north west] at (2,26.25) {Département de Génie Civil};
+    %\node[anchor=north] at (21/2+1,27.7) {\includegraphics[height=1.225cm, keepaspectratio]{1_cover/meta/uphf.pdf}};
+    %\node[anchor=north east] at (21-2,27.7) {\includegraphics[height=1.225cm, keepaspectratio]{1_cover/meta/in2c.png}};
+\end{tikzpicture}
+
+
+% Informations sur le tuteur
+\begin{center}
+    \textbf{Tuteurs :}
+    \vspace{0.25cm}
+    \begin{tabular}{lll}
+        \tutors
+    \end{tabular}
+\end{center}
+\vspace{0.2cm}
+
+% Mots-clés
+\begin{center}
+    \textbf{Keywords:}
+    \varkeywords
+\end{center}
+\vspace{0.5cm}
+
+% Résumé
+\begin{center}
+    \Large{\textbf{Abstract :}}
+\end{center}
+\input{2_content/20_abstract}
+
+% Nouvelle page pour la table des matières
+\newpage
+\pagestyle{fancy}
+% Configuration de l'en-tête
+\fancyhead[L]{\includegraphics[height=12pt]{\projecticonl}}
+\fancyhead[C]{\projecttitle} 
+\fancyhead[R]{\includegraphics[height=12pt]{\projecticonr}}
+% Configuration du pied de page
+\fancyfoot[L]{\authorname} 
+\fancyfoot[C]{\today} 
+\fancyfoot[R]{} 
+
+\singlespacing
+\tableofcontents
+
+% Nouvelle page pour les listes de figures et de tables
+\newpage
+\listoffigures
+\listoftables
+
+% Réinitialiser la numérotation des pages
+\newpage
+\pagenumbering{arabic}
+\pagestyle{fancy}
+% Configuration de l'en-tête
+\fancyhead[L]{\includegraphics[height=12pt]{\projecticonl}}
+\fancyhead[C]{\projecttitle} 
+\fancyhead[R]{\includegraphics[height=12pt]{\projecticonr}}
+% Configuration du pied de page
+\fancyfoot[L]{\authorname} 
+\fancyfoot[C]{\today} 
+\fancyfoot[R]{\thepage\ / \pageref{LastPage}} 

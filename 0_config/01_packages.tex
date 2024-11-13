@@ -1,0 +1,68 @@
+% Encodage et langue
+\usepackage[utf8]{inputenc} % Encodage des caractères
+\usepackage[T1]{fontenc}    % Encodage des polices
+\usepackage[french]{babel}  % Langue française
+
+% Polices et symboles mathématiques
+\usepackage{amsfonts,amssymb,amsmath,mathrsfs,stmaryrd}
+
+% Tableaux
+\usepackage{array}
+\usepackage{boldline,multirow,tabularx,colortbl,diagbox,makecell,ltablex}
+
+% Graphiques et couleurs
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{pgf,tikz,pgfplots,pgfplotstable}
+\usetikzlibrary{calc,positioning,shapes.geometric,shapes.symbols,shapes.misc,fit,shapes,arrows,arrows.meta}
+\pgfplotsset{compat=1.18}
+
+% Mise en page et style
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.25cm, right=2.25cm]{geometry}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{indentfirst}
+\usepackage{adjustbox}
+\usepackage{caption}
+\usepackage{multicol}
+\usepackage{lastpage}
+\usepackage{datetime}
+\usepackage{authblk}
+\usepackage{ifthen}
+
+% Gestion des références
+\usepackage{fvextra}
+\usepackage{csquotes}
+\usepackage[backend=biber, style=iso-numeric, doi=true, isbn=true]{biblatex}
+\addbibresource{3_bibliography/bibliography.bib}
+
+% Code source
+\usepackage{minted}
+\usemintedstyle{default}
+\definecolor{bg}{rgb}{0.95,0.95,0.95}
+\setminted{
+    style=default,
+    bgcolor=bg,
+    fontsize=\small,
+    linenos,
+    frame=lines,
+    framesep=2mm
+}
+
+% Texte d'exemple
+\usepackage{lipsum}
+
+% Hyperliens
+\usepackage{url}
+\usepackage{hyperref}
+
+% Diagrammes
+\usepackage{forest}
+
+% Remarques et commentaires
+\usepackage[colorinlistoftodos]{todonotes}
+\setlength{\marginparwidth}{2cm}
+
+%Cover
+\usepackage{fancybox}
+\usepackage{listings}
