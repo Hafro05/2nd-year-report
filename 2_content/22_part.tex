@@ -1,3 +1,60 @@
-\section{Problématique}
+\section{Présentation des Concepts Clés}
 
-Bonjour
+\subsection{Notion de ressource}
+
+Chez Padoa, une \textbf{ressource} représente un type spécifique de données qui est géré et intégré dans le système d'information de l'entreprise. Les ressources sont généralement obtenues en effectuant des requêtes (\emph{queries}) sur la base de données des clients. Chaque ressource suit un processus de traitement bien défini qui comprend la transformation, le nettoyage, et l'injection dans la base de données Padoa.
+
+Voici quelques exemples courants de ressources :
+
+\begin{itemize}
+    \item \textbf{Adhérents (\emph{Firm})} : Informations sur les entreprises adhérents des clients de Padoa.
+    \item \textbf{Salariés (\emph{Employee})} : Données sur les employés suivis par clients, incluant leurs informations personnelles et professionnelles.
+    \item \textbf{Contrats (\emph{Employment Contract})} : Détails des contrats de travail entre les employeurs (firm) et les employés.
+    \item \textbf{Visites Historiques (\emph{Visit Histo})} : Enregistrements des visites médicales passées des employés, souvent utilisées pour le suivi de la santé au travail.
+\end{itemize}
+
+\subsection{Processus de reprise des ressources}
+
+\paragraph{Transformation (\emph{Transform}):}
+La transformation des ressources est une étape cruciale qui est définie manuellement en fonction du client et du type de ressource concernée. Ici on applique les mappings et les différentes règles de reprise et les différents formattage de données nécessaires. Cela permet d'adapter les données brutes du client pour qu'elles soient conformes aux standards et aux formats attendus par les systèmes de Padoa.
+
+\paragraph{Nettoyage (\emph{Clean}):}
+Le nettoyage est une étape prédéfinie pour toutes les ressources. Cette étape garantit que les données sont conformes aux exigences de Padoa. Le processus de nettoyage standardise les données, élimine les erreurs, et assure leur cohérence avant leur intégration dans les systèmes de l'entreprise.
+
+\paragraph{Comparaison et Identification (\emph{Compare and Identify}) :}
+Après le nettoyage, les données subissent un processus de comparaison avec les informations existantes dans le système. Cette étape permet d'identifier les correspondances, les nouvelles entrées ou les divergences par rapport aux données déjà présentes. Cela est crucial pour décider si les données doivent être mises à jour, ajoutées ou supprimées lors de l'injection.
+
+\paragraph{Injection (\emph{Load}):}
+L'injection consiste à créer, modifier ou supprimer les ressources nettoyées, transformées et identifiées dans la base de données Padoa du client. Cette étape finalise le processus d'intégration des données, permettant leur utilisation par les différents modules et services de Padoa.
+
+
+\subsubsection{Ressources \texttt{File} et \texttt{FileMeta}}
+
+Dans le système Padoa, les ressources \texttt{File} et \texttt{FileMeta} jouent des rôles cruciaux dans la gestion et l'organisation des fichiers. 
+
+\paragraph{\texttt{File}}
+
+La ressource \texttt{File} est la ressource principale pour identifier et gérer les fichiers dans le système Padoa. Elle contient plusieurs attributs importants :
+
+\begin{itemize}
+    \item \textbf{source\_id} : Ce champ représente généralement le nom du fichier sans son extension. Ce champ est utilisé pour identifier de manière unique le fichier à partir du logiciel d'origine.
+    \item \textbf{filename} : Le nom complet du fichier, y compris son extension.
+    \item \textbf{label} : Le titre du fichier tel qu'il apparaît sur l'interface utilisateur de Padoa.
+    \item \textbf{blobFilePath} : Le chemin d'accès au fichier dans le stockage de type blob.
+    \item \textbf{mimetype} : Le type du fichier calculé à partir de son extension
+    \item \textbf{size} : La taille du fichier en octets
+    \item \textbf{md5} : Le hash du fichier pour détecter des modifications de son contenu
+\end{itemize}
+Voici certains des plus importants attributs de la ressource \texttt{File}. 
+
+\paragraph{\texttt{FileMeta}}
+
+La ressource \texttt{FileMeta} lie les fichiers aux autres ressources dans le système. Les champs de la ressource \texttt{File} qui sont des \texttt{source\_id} (tels que \texttt{Employee}, \texttt{AMT}, etc.) sont en fait injectés dans \texttt{FileMeta}.
+
+Les informations clés de la table \texttt{file\_meta} en base de données sont :
+
+\begin{itemize}
+    \item \textbf{id} : L'identifiant unique de l'entrée dans la table \texttt{file\_meta}.
+    \item \textbf{file\_id} : L'identifiant Padoa du fichier lié.
+    \item \textbf{[ressource]\_id} : L'identifiant Padoa de la ressource à laquelle le fichier est lié.
+\end{itemize}
