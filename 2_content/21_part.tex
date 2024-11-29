@@ -24,7 +24,7 @@ travail sont les suivantes :
         Elle s'occupe principalement de la reprise des données des nouveaux clients pour leur passage sur Padoa. Elle travaille de manière conjointe avec l'équipe Déploiement.
 
   \item \textbf{SRE(Site Reliability Engineering)}:
-        Ils s'occupent du support technique à Padoa en interne comme en externe. Ils s'occupent des serveurs utilisés autant par les clients que par les autres équipes de Padoa.
+        Ils s'occupent du support technique à padoa en interne comme en externe. Ils s'occupent des serveurs utilisés autant par les clients que par les autres équipes de Padoa.
 
 \end{itemize}
 
@@ -39,7 +39,7 @@ ainsi une transition sans interruption.
 
 Les responsabilités de l’équipe sont multiples et essentielles au bon
 fonctionnement des services. Elle s’occupe notamment de l’intégration des
-données historiques des clients dans les bases de données de Padoa, un
+données historiques des clients dans les bases de données de padoa, un
 processus complexe qui implique l’importation, la validation et la
 transformation des données afin de les rendre compatibles avec les systèmes
 internes. Dans ce cadre, l’équipe établit également des mappings et des règles
@@ -63,58 +63,9 @@ Padoa.
 
 \subsection{Le client: le SSTI03}
 
-Le SSTI03 (Service de Santé au Travail Interentreprises de l’Ain) est une organisation dédiée à la santé et la sécurité des travailleurs dans le département de l’Ain. Comme d'autres services de santé au travail, le SSTI03 accompagne les entreprises de la région dans la mise en œuvre des obligations de suivi médical, de prévention des risques professionnels et de promotion de la santé au travail. Il propose des services variés, allant des examens médicaux réglementaires aux actions de prévention en entreprise, en passant par des conseils et formations pour favoriser de meilleures conditions de travail.
+Le SSTI03 (Service de Santé au Travail Interentreprises de l’Allier) est une organisation dédiée à la santé et la sécurité des travailleurs dans le département de l’Allier. Comme d'autres services de santé au travail, le SSTI03 accompagne les entreprises du département dans la mise en œuvre des obligations de suivi médical, de prévention des risques professionnels et de promotion de la santé au travail. Il propose des services variés, allant des examens médicaux réglementaires aux actions de prévention en entreprise, en passant par des conseils et formations pour favoriser de meilleures conditions de travail.
 
 Le SSTI03 travaille en partenariat avec des spécialistes de la santé au travail, comme des médecins du travail, des infirmiers et des intervenants en prévention des risques professionnels (IPRP).
 
-Pour organiser leur quotidien et gérer leur différentes tâches; ils utilisent un logiciel. Celui ci leur ser à planifier les visites, gérer les planning des professionnels de santé, enregistrer les informations des adhérents et des salariésqu'il suivent ou encore les examens à leur faire passer. Dans le cas du SSTI03, il est en train de transitionner du logiciel Préventiel au logiciel Padoa. 
+Pour organiser leur quotidien et gérer leur différentes tâches; ils utilisent un logiciel. Celui ci leur sert à planifier les visites, gérer les planning des professionnels de santé, enregistrer les informations des adhérents et des salariés qu'il suivent ou encore les examens à leur faire passer. Dans le cas du SSTI03, il est en train de passer du logiciel préventiel au logiciel padoa. 
 
-\begin{figure}[h!]
-  \centering
-  \begin{forest}
-    for tree={
-    grow'=0,
-    draw,
-    rounded corners,
-    node options={align=center, draw, rounded corners},
-    fit=band,
-    anchor=west,
-    parent anchor=east,
-    child anchor=west,
-    edge path={
-        \noexpand\path [draw, \forestoption{edge}]
-        (!u.parent anchor) -- +(5pt,0) |- (.child anchor)\forestoption{edge label};
-      },
-    s sep+=5pt,
-    l sep+=10pt,
-    }
-    [Projet
-      [0\_config
-        [01\_commands.tex]
-        [02\_packages.tex]
-        [03\_variables.tex]
-      ]
-      [1\_cover
-        [11\_covermain.tex]
-        [12\_cover\_in.tex]
-        [13\_cover\_out.tex]
-      ]
-      [2\_content
-        [20\_abstract.tex]
-        [20\_introduction.tex]
-        [21\_part.tex]
-        [28\_conclusion.tex]
-        [29\_bibliography.tex]
-      ]
-      [3\_bibliography
-        [bibliography.bib]
-      ]
-      [4\_attachments
-        [figures]
-        [tables]
-      ]
-    ]
-  \end{forest}
-  \caption{Structure du Projet LaTeX}
-  \label{fig:structure_projet}
-\end{figure}

@@ -1,0 +1,57 @@
+\section{Déroulé d'un déploiement}
+
+Un déploiement est une période d’environ six mois, durant laquelle tout est mis en œuvre pour préparer le passage d’un nouveau client vers la solution proposée par padoa. Cette phase repose sur une collaboration étroite entre plusieurs équipes, chacune jouant un rôle spécifique dans le processus.
+
+\subsection{Organisation et acteurs du déploiement}
+
+Le déploiement implique la collaboration de plusieurs équipes, chacune ayant un rôle clé dans la réussite du projet :
+\begin{itemize}
+    \item La \textbf{SRE}, qui configure les environnements nécessaires au projet, notamment les environnements de test et de production.
+    \item Les \textbf{équipes opérationnelles (Ops) déploiement}, qui assurent la communication directe avec le client, valident les paramètres spécifiques au projet, et collaborent sur les mappings et les règles de reprise des données.
+    \item L’équipe \textbf{intégration}, qui est en charge de reprendre les données du client depuis les anciens systèmes pour les transformer et les intégrer dans la base de données de Padoa, tout en respectant les règles métier définies et validées avec le client.
+\end{itemize}
+
+Cette collaboration étroite entre équipes techniques et opérationnelles est essentielle pour assurer une transition fluide et répondre aux attentes spécifiques du client.
+
+\subsection{La recette : une étape clé du déploiement}
+
+Environ deux mois avant la fin du déploiement, une étape critique appelée \textbf{recette} est organisée. Celle-ci se déroule au sein du service de santé au travail, en présence de divers référents du client, tels que des médecins, des secrétaires et des infirmiers. Pendant cette phase, un environnement temporaire est mis à disposition du client pour simuler l’utilisation du système avec les données reprises.
+
+L’objectif de la recette est double : d’une part, faire un état des lieux de la qualité des données reprises et, d’autre part, recueillir les retours du client sur ce qui pourrait être mal repris ou manquant. Une liste de vérifications est fournie pour guider cette étape, garantissant une évaluation complète des données et des fonctionnalités.
+
+\subsection{Ma contribution lors de la recette du SSTI03}
+
+Je suis arrivé dans le projet peu avant la recette du SSTI03, ce qui m’a permis d’y participer activement. Cette expérience a été particulièrement enrichissante, car j’ai contribué à la résolution des retours formulés par le client. J’ai notamment travaillé sur plusieurs ressources, telles que les actions en milieu de travail, les plannings, les examens cliniques et les examens complémentaires en attente de résultat. Pour ces dernières, un travail un peu similaire à celui sur les examens complémentaires a été effectué, consistant à appliquer des règles spécifiques et à corriger les anomalies détectées.
+
+Ces corrections ont impliqué une analyse approfondie des données mal reprises pour identifier les causes des problèmes, comme des erreurs de mapping ou des règles mal appliquées, et apporter les ajustements nécessaires. Cela a permis de garantir la conformité et la qualité des données migrées.
+
+\subsection{Le freeze et la bascule}
+
+La bascule correspond au premier jour où le service utilise officiellement le logiciel padoa. Avant cette étape, une période de freeze, d’une durée d’environ une semaine, est mise en place. Durant cette période, le client cesse d’utiliser son ancien logiciel, ce qui permet de garantir une reprise complète et fidèle des données.
+
+Le premier jour du freeze, le service fournit à padoa un dernier dump de sa base de données. Ce sont ces données, figées à cet instant précis, qui seront reprises et intégrées sur padoa. Le freeze permet ainsi de stabiliser la transition et d’assurer une synchronisation parfaite.
+Exceptionnellement pour le SSTI03, le freeze a duré 2 semaines, ce qui a un peu freiné le service mais nous a donné plus de temps pour faire les différentes vérifications nécessaires avant la bascule.
+
+Durant cette période, le service ne reçoit pas de salarié. Les équipes de padoa en profitent pour former les futurs utilisateurs sur des environnements dédiés, qui ne contiennent pas encore les données réelles. Ces formations permettent aux utilisateurs de se familiariser avec l’interface et les fonctionnalités du logiciel avant la bascule. La période de freeze se termine le jour de la bascule, marquant le début effectif de l’utilisation de padoa par le service.
+
+\subsection{L'accompagnement et la vigie}
+
+Lors des trois jours suivant la bascule, un dispositif d’\textbf{accompagnement} est mis en place pour assurer une transition fluide vers padoa. Des équipes de padoa se rendent sur place et assistent les membres de chaque équipe du service (médecins, secrétaires, infirmiers, etc.) selon un planning préétabli. Cet accompagnement consiste à guider les utilisateurs dans leurs premières connexions au logiciel, à répondre à leurs questions et à corriger d’éventuels bugs rencontrés.
+
+En parallèle, un dispositif de \textbf{vigie} est maintenu à distance, à padoa. Composé de membres de différentes équipes, dont l’équipe intégration, ce dispositif a pour mission de traiter les retours qui ne peuvent être résolus sur place. Un ou deux membres de l’équipe intégration surveillent spécifiquement les éventuels retours liés à la reprise des données. 
+
+J’ai eu l’opportunité de participer à cette vigie, qui s’est révélée globalement calme. Les retours reçus étaient peu nombreux et concernaient des problèmes mineurs, facilement corrigés. Cette tranquillité a témoigné de la solidité du travail réalisé en amont, notamment lors de la phase de reprise et de recette.
+
+
+\subsection{Relation avec les autres équipes dans le cadre de la reprise des données}
+
+Durant cette période, j’ai été intégré à l’équipe de déploiement du projet. Cela m’a permis de participer aux réunions hebdomadaires organisées avec les chefs de projet opérationnels (Ops). Ces réunions visaient à faire le point sur l’avancement des sujets en cours, à discuter des problématiques rencontrées, et à définir les priorités pour les semaines suivantes.
+
+Par ailleurs, j’ai collaboré étroitement avec les ops pour clarifier certains points avec le client ou transmettre des informations essentielles. Ces échanges réguliers ont été indispensables pour assurer une bonne coordination entre les équipes et garantir la satisfaction du client.
+
+\subsection{Bilan de la phase de déploiement}
+
+Cette période de déploiement, et en particulier ma participation à la recette, m’a permis d’acquérir une vision globale du processus de reprise et d’intégration des données. Elle a également renforcé mes compétences techniques et interpersonnelles, en m’impliquant directement dans des interactions avec les équipes internes et le client, tout en participant à la résolution de problématiques concrètes.
+
+
+

@@ -2,7 +2,7 @@
 
 \subsection{Notion de ressource}
 
-Chez Padoa, une \textbf{ressource} représente un type spécifique de données qui est géré et intégré dans le système d'information de l'entreprise. Les ressources sont généralement obtenues en effectuant des requêtes (\emph{queries}) sur la base de données des clients. Chaque ressource suit un processus de traitement bien défini qui comprend la transformation, le nettoyage, et l'injection dans la base de données Padoa.
+Chez padoa, une \textbf{ressource} représente un type spécifique de données qui est géré et intégré dans le système d'information de l'entreprise. Les ressources sont généralement obtenues en effectuant des requêtes (\emph{queries}) sur la base de données des clients. Chaque ressource suit un processus de traitement bien défini qui comprend la transformation, le nettoyage, et l'injection dans la base de données Padoa.
 
 Voici quelques exemples courants de ressources :
 
@@ -15,46 +15,43 @@ Voici quelques exemples courants de ressources :
 
 \subsection{Processus de reprise des ressources}
 
-\paragraph{Transformation (\emph{Transform}):}
-La transformation des ressources est une étape cruciale qui est définie manuellement en fonction du client et du type de ressource concernée. Ici on applique les mappings et les différentes règles de reprise et les différents formattage de données nécessaires. Cela permet d'adapter les données brutes du client pour qu'elles soient conformes aux standards et aux formats attendus par les systèmes de Padoa.
+La reprise des données des nouveaux clients à padoa est à la charge de l'équipe intégration. Pour ce faire, celle-ci maintient deux repos \footnote{Un GitHub repository est un espace de stockage et de gestion de code source pour un projet donné} qui correspondent aux deux principales
+étapes de la reprise de données. L'équipe s'occupe aussi de certaines routes backend pour insérer les données dans les environnements client.
 
-\paragraph{Nettoyage (\emph{Clean}):}
-Le nettoyage est une étape prédéfinie pour toutes les ressources. Cette étape garantit que les données sont conformes aux exigences de Padoa. Le processus de nettoyage standardise les données, élimine les erreurs, et assure leur cohérence avant leur intégration dans les systèmes de l'entreprise.
+\subsubsection{Esquilo}
 
-\paragraph{Comparaison et Identification (\emph{Compare and Identify}) :}
-Après le nettoyage, les données subissent un processus de comparaison avec les informations existantes dans le système. Cette étape permet d'identifier les correspondances, les nouvelles entrées ou les divergences par rapport aux données déjà présentes. Cela est crucial pour décider si les données doivent être mises à jour, ajoutées ou supprimées lors de l'injection.
+L'esquilo est un outil clé, conçu et maintenu par l’équipe intégration de Padoa, pour automatiser et structurer l’extraction des données issues des bases de données des clients lors de la reprise de données. Le client fournit une sauvegarde (dump\footnote{Un dump de base de données contient un enregistrement de la structure de la table et/ou des données d'une base de données et se présente généralement sous la forme d'une liste d'instructions SQL\cite{wiki-dump}}) de sa base de données et à ce moment l’esquilo intervient. Il s’agit d’un ensemble de requêtes SQL définies et organisées, couvrant l’intégralité des ressources nécessaires pour la migration, comme les données relatives aux salariés, aux mesures de santé, ou à d'autres éléments critiques.
 
-\paragraph{Injection (\emph{Load}):}
-L'injection consiste à créer, modifier ou supprimer les ressources nettoyées, transformées et identifiées dans la base de données Padoa du client. Cette étape finalise le processus d'intégration des données, permettant leur utilisation par les différents modules et services de Padoa.
+Chaque requête contenue dans l’esquilo est adaptée pour extraire des ressources spécifiques et transformer les données en un format compatible avec le processus d’intégration. L’objectif est de récupérer de manière exhaustive et structurée toutes les informations pertinentes depuis la base de données source. Cela permet de garantir que les données extraites sont prêtes pour les étapes suivantes de la reprise, notamment leur validation, transformation, et importation dans les systèmes de Padoa.
 
+L’esquilo constitue ainsi la première étape essentielle du processus de migration, en assurant une extraction fiable, standardisée et centralisée des données clients. Grâce à cet outil, l’équipe intégration peut gérer efficacement la diversité des structures de bases de données des clients et poser des bases solides pour une transition fluide vers les solutions de Padoa.
 
-\subsubsection{Ressources \texttt{File} et \texttt{FileMeta}}
+\subsubsection{Integration}
 
-Dans le système Padoa, les ressources \texttt{File} et \texttt{FileMeta} jouent des rôles cruciaux dans la gestion et l'organisation des fichiers. 
+Le repo intégration prend le relais après l’extraction initiale effectuée par l’esquilo. Il est responsable de transformer les données brutes issues de la base de données du client pour les rendre conformes au format et à la structure attendus par le backend Padoa. Cette étape de mise en forme est essentielle pour garantir une compatibilité totale avec les exigences techniques et fonctionnelles de l’application.
 
-\paragraph{\texttt{File}}
+Au cours de ce processus, le repo intégration applique les mappings de valeurs préalablement définis et validés avec le client. Ces correspondances permettent de traduire les données spécifiques de l’ancien système en des valeurs adaptées au fonctionnement de Padoa, tout en respectant les règles et les conventions du nouveau logiciel. En plus des mappings, des règles de reprise spécifiques à chaque client peuvent être intégrées dans le processus. Ces règles personnalisées répondent à des besoins particuliers identifiés lors des échanges avec le client, garantissant une migration sur mesure et conforme à leurs attentes.
+Toutes ces transformations sont effectuées dans ce qu'on appelle un \textbf{extracteur}. L'une des tâches principales de l'équipe intégration est donc de créer des extracteurs pour chaque ressource pour chaque client.
 
-La ressource \texttt{File} est la ressource principale pour identifier et gérer les fichiers dans le système Padoa. Elle contient plusieurs attributs importants :
+Une fois les données transformées et vérifiées, le repo intégration les envoie au backend de padoa, où elles subissent une dernière série de validations propres à l’application. Ces validations supplémentaires permettent de vérifier l’intégrité et la cohérence des données avant leur intégration définitive dans la base de données de padoa. 
 
-\begin{itemize}
-    \item \textbf{source\_id} : Ce champ représente généralement le nom du fichier sans son extension. Ce champ est utilisé pour identifier de manière unique le fichier à partir du logiciel d'origine.
-    \item \textbf{filename} : Le nom complet du fichier, y compris son extension.
-    \item \textbf{label} : Le titre du fichier tel qu'il apparaît sur l'interface utilisateur de Padoa.
-    \item \textbf{blobFilePath} : Le chemin d'accès au fichier dans le stockage de type blob.
-    \item \textbf{mimetype} : Le type du fichier calculé à partir de son extension
-    \item \textbf{size} : La taille du fichier en octets
-    \item \textbf{md5} : Le hash du fichier pour détecter des modifications de son contenu
-\end{itemize}
-Voici certains des plus importants attributs de la ressource \texttt{File}. 
+\subsubsection{Padoa et les routes d'intégration}
 
-\paragraph{\texttt{FileMeta}}
+Padoa est une application web divisée en backend et frontend. Le frontend représente la partie qui est affichée à l'utilisateur et qui interragit avec celui ci et le backend s'occupe de la logique métier et de la communication avec la base de données et d'autres services.
 
-La ressource \texttt{FileMeta} lie les fichiers aux autres ressources dans le système. Les champs de la ressource \texttt{File} qui sont des \texttt{source\_id} (tels que \texttt{Employee}, \texttt{AMT}, etc.) sont en fait injectés dans \texttt{FileMeta}.
+L'équipe intégration maintient pour chaque ressource des routes dans le backend qui lui permettent d'insérer, de modifier ou de supprimer celle-ci. Ces routes existent pour que l'équipe ne puisse pas insérer des données qui ne respectent pas les logiques métier. Ça donne aussi un peu de flexibilité à l'équipe par au rapport aux possibilités qur chaque ressource. Par exemple, elle ne crée de route de suppression pour une ressource qu'elle ne veut pas supprimer ou de route de modification pour des ressources qu'elle ne veut pas modifier. C'est donc pour ça que l'équipe utilise ces routes au lieu de directement insérer les données dans la base de données.
 
-Les informations clés de la table \texttt{file\_meta} en base de données sont :
+\subsection{Les examens complémentaires en attentes de résultat (\texttt{measure request})}
 
-\begin{itemize}
-    \item \textbf{id} : L'identifiant unique de l'entrée dans la table \texttt{file\_meta}.
-    \item \textbf{file\_id} : L'identifiant Padoa du fichier lié.
-    \item \textbf{[ressource]\_id} : L'identifiant Padoa de la ressource à laquelle le fichier est lié.
-\end{itemize}
+La ressource \textbf{measure\_request} représente les examens complémentaires prescrits par les professionnels de santé aux salariés, dans le cadre de leur suivi médical en santé au travail. Ces examens, essentiels pour évaluer la santé des salariés, sont des mesures spécifiques en attente de résultat. 
+
+Une \textbf{measure\_request} contient des informations clés permettant de suivre et de gérer le processus, notamment l’identité du salarié concerné, le type d’examen prescrit, la date de prescription, le professionnel de santé ayant fait la prescription, ainsi que l’état actuel de la mesure (en attente de résultat, partiellement reçue, etc.).
+
+Cette ressource joue un rôle crucial dans la traçabilité et le suivi des examens, car elle permet aux médecins et aux équipes de santé au travail de disposer d’un aperçu clair et organisé des prescriptions non finalisées. Elle est également utilisée pour garantir que les résultats manquants sont suivis et intégrés dans le dossier médical dès qu’ils sont disponibles. 
+
+\subsection{Les pull requests (PR) et la CI}
+
+Chez Padoa, CircleCI est utilisé comme outil d'intégration continue (CI) pour automatiser l'exécution des tests, la validation du code, et le déploiement des applications. Grâce à CircleCI, chaque modification du code source déclenche automatiquement un pipeline de tests qui permet de vérifier que les changements n’introduisent pas d’erreurs. Cela permet ainsi d’assurer la qualité et la stabilité du code tout au long du développement. Un autre avantage de CircleCI est sa capacité à exécuter des tests en parallèle, ce qui accélère considérablement le processus global d'intégration.
+
+L'intégration de CircleCI avec des outils de gestion de code comme GitHub permet aux à l'équipe intégration de suivre facilement l’évolution des tests et de détecter rapidement les erreurs. Ce système d'intégration continue facilite ainsi un déploiement rapide et fiable des nouvelles fonctionnalités (des extracteurs le plus souvent) du logiciel tout en garantissant une certaine sécurité vis-à-vis des erreurs potentielles.
+
