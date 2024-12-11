@@ -41,7 +41,18 @@ Padoa est une application web divisée en backend et frontend. Le frontend repr�
 
 L'équipe intégration maintient pour chaque ressource des routes dans le backend qui lui permettent d'insérer, de modifier ou de supprimer celle-ci. Ces routes existent pour que l'équipe ne puisse pas insérer des données qui ne respectent pas les logiques métier. Ça donne aussi un peu de flexibilité à l'équipe par au rapport aux possibilités qur chaque ressource. Par exemple, elle ne crée de route de suppression pour une ressource qu'elle ne veut pas supprimer ou de route de modification pour des ressources qu'elle ne veut pas modifier. C'est donc pour ça que l'équipe utilise ces routes au lieu de directement insérer les données dans la base de données.
 
+\subsection{Les pull requests (PR) et la CI}
+
+Padoa utilise l’intégration continue pour détecter rapidement les erreurs, automatiser les processus, et assurer un logiciel toujours prêt à être déployé. Cela garantit une meilleure collaboration et des déploiements plus sûrs.
+
+Chez Padoa, CircleCI est utilisé comme outil d'intégration continue (CI) pour automatiser l'exécution des tests, la validation du code, et le déploiement des applications. Grâce à CircleCI, chaque modification du code source déclenche automatiquement un pipeline de tests qui permet de vérifier que les changements n’introduisent pas d’erreurs. Cela permet ainsi d’assurer la qualité et la stabilité du code tout au long du développement. Un autre avantage de CircleCI est sa capacité à exécuter des tests en parallèle, ce qui accélère considérablement le processus global d'intégration.
+
+L'intégration de CircleCI avec des outils de gestion de code comme GitHub permet aux à l'équipe intégration de suivre facilement l’évolution des tests et de détecter rapidement les erreurs. Ce système d'intégration continue facilite ainsi un déploiement rapide et fiable des nouvelles fonctionnalités (des extracteurs le plus souvent) du logiciel tout en garantissant une certaine sécurité vis-à-vis des erreurs potentielles.
+
+
 \subsection{Les examens complémentaires en attentes de résultat (\texttt{measure request})}
+
+Une des ressources clés sur laquelle nous avons eu à travailler, c'est les examens complémentaires en attentes de résultat. C'est celle que nous présenterons en détail dans la suite.
 
 La ressource \textbf{measure\_request} représente les examens complémentaires prescrits par les professionnels de santé aux salariés, dans le cadre de leur suivi médical en santé au travail. Ces examens, essentiels pour évaluer la santé des salariés, sont des mesures spécifiques en attente de résultat. 
 
@@ -49,9 +60,4 @@ Une \textbf{measure\_request} contient des informations clés permettant de suiv
 
 Cette ressource joue un rôle crucial dans la traçabilité et le suivi des examens, car elle permet aux médecins et aux équipes de santé au travail de disposer d’un aperçu clair et organisé des prescriptions non finalisées. Elle est également utilisée pour garantir que les résultats manquants sont suivis et intégrés dans le dossier médical dès qu’ils sont disponibles. 
 
-\subsection{Les pull requests (PR) et la CI}
-
-Chez Padoa, CircleCI est utilisé comme outil d'intégration continue (CI) pour automatiser l'exécution des tests, la validation du code, et le déploiement des applications. Grâce à CircleCI, chaque modification du code source déclenche automatiquement un pipeline de tests qui permet de vérifier que les changements n’introduisent pas d’erreurs. Cela permet ainsi d’assurer la qualité et la stabilité du code tout au long du développement. Un autre avantage de CircleCI est sa capacité à exécuter des tests en parallèle, ce qui accélère considérablement le processus global d'intégration.
-
-L'intégration de CircleCI avec des outils de gestion de code comme GitHub permet aux à l'équipe intégration de suivre facilement l’évolution des tests et de détecter rapidement les erreurs. Ce système d'intégration continue facilite ainsi un déploiement rapide et fiable des nouvelles fonctionnalités (des extracteurs le plus souvent) du logiciel tout en garantissant une certaine sécurité vis-à-vis des erreurs potentielles.
 

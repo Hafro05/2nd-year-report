@@ -34,7 +34,7 @@ La localisation des données permet de valider avec le client les informations �
 
 L'étape qui suit consiste à explorer la base de données du client, qui constitue la source principale des informations à migrer. Cette phase implique une analyse détaillée de la structure et du contenu des données fournies via un dump. L'objectif est de comprendre l'organisation des tables, les relations entre elles, et les types de données stockées. 
 
-Le client SSTI03 utilisait le logiciel préventiel avant de passer sur padoa, logiciel assez bien connu par l'équipe intégration car ce client n'est pas le premier. La base de données de préventiel est donc assez connue de l'équipe et cette phase a donc été plutôt rapide.
+Le client SSTI03 utilisait le logiciel préventiel avant de passer sur padoa, logiciel assez bien connu par l'équipe intégration car ce client n'est pas le premier à utiliser ce logiciel. La base de données de préventiel est donc assez connue de l'équipe et cette phase a donc été plutôt rapide.
 
 Les informations nécessaires pour la migration des examens complémentaires en attente de résultat ont été identifiées (tables et liaisons) par rapport à ce qui avait déjà été fait.
 
@@ -83,6 +83,26 @@ Cette information n'était pas reprise à la base dans la requête esquilo. Malh
 \end{itemize}
 
 Ces règles s'appliquent visiblement en cascade et sont exclusives.
+
+\begin{lstlisting}[language=Python, caption=Calcul de statut]
+  # Fonction pour calculer le champ
+  def compute_status(row):
+      if row['refus'] == 1:
+          return 'Refuse'
+      elif row['demande'] == 0:
+          return 'Non demande'
+      elif pd.notna(row['date_prescription']):
+          return 'Prescrit'
+      elif pd.notna(row['date_prevision']):
+          return 'Prevu'
+      elif pd.notna(row['date_annulation']):
+          return 'Annule'
+      return None
+
+  ....
+  # Application de la fonction
+  df_measure_request['statut'] = df_measure_request.apply(compute_status, axis=1)
+\end{lstlisting}
 
 Une fois la requête rédigée et testée, elle est intégrée à l’esquilo pour automatiser l’extraction des \textit{measure\_requests}, en garantissant une récupération cohérente et exhaustive des données pour les étapes suivantes.
 
